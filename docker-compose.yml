@@ -27,7 +27,11 @@ services:
       - describly
     volumes:
       - ".:/usr/srv"
-
+  test-service:
+    build: .
+    volumes:
+       - .:/usr/srv
+    entrypoint: pytest
   smtp-service:
     image: axllent/mailpit
     restart: unless-stopped
