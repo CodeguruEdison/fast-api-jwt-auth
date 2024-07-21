@@ -11,4 +11,8 @@ class IUserRepository(ABC):
     @abstractmethod    
     def add(self,user:User)->User:
         pass
+    @abstractmethod
+    def is_user_exists_by_email(self,email:str)->bool:
+        pass
+        
     

@@ -10,6 +10,7 @@ from starlette.testclient import TestClient
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from app.config.security import hash_password
 from app.main import app
 # from app.config.email import fm
 from app.config.database import Base, get_session
@@ -53,6 +54,9 @@ def client(app_test, test_session):
     #fm.config.SUPPRESS_SEND = 1
     return TestClient(app_test)
 
+
+    
+
 # @pytest.fixture(scope="function")
 # def auth_client(app_test, test_session, user):
 #     def _test_db():
@@ -82,19 +86,19 @@ def client(app_test, test_session):
 #     test_session.refresh(model)
 #     return model
 
-# @pytest.fixture(scope="function")
-# def user(test_session):
-#     model = User()
-#     model.name = USER_NAME
-#     model.email = USER_EMAIL
-#     model.password = hash_password(USER_PASSWORD)
-#     model.updated_at = datetime.utcnow()
-#     model.verified_at = datetime.utcnow()
-#     model.is_active = True
-#     test_session.add(model)
-#     test_session.commit()
-#     test_session.refresh(model)
-#     return model
+@pytest.fixture(scope="function")
+def user(test_session):
+    model = User()
+    model.name = USER_NAME
+    model.email = USER_EMAIL
+    model.password = hash_password(USER_PASSWORD)
+    model.updated_at = datetime.utcnow()
+    model.verified_at = datetime.utcnow()
+    model.is_active = True
+    test_session.add(model)
+    test_session.commit()
+    test_session.refresh(model)
+    return model
 
 # @pytest.fixture(scope="function")
 # def unverified_user(test_session):
