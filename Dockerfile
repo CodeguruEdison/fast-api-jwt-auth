@@ -14,6 +14,8 @@ COPY ./requirements.txt /usr/srv/requirements.txt
 
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
+
+
 USER ubuntu
 
 EXPOSE 8000

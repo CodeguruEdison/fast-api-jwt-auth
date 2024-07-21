@@ -3,7 +3,7 @@ from fastapi import APIRouter,Depends, HTTPException,status
 from app.config.dependency_config import get_user_service
 from app.responses.user import UserResponse
 from app.schemas.user import RegisterUserRequest
-from app.schemas.user_custom_exception import UserAlreadyExistsException
+from app.schemas.custom_exception import PasswordNotStrongEnoughException, UserAlreadyExistsException
 from app.services.user import AbstractUserService
 
 
@@ -19,5 +19,5 @@ async def register_user(data:RegisterUserRequest,user_service:AbstractUserServic
         return user
     except UserAlreadyExistsException as e:
         raise HTTPException(status_code=400,detail=str(e))
-        
     
+        

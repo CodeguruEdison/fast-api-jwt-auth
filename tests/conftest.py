@@ -1,4 +1,5 @@
 from datetime import datetime
+import logging
 import sys
 import os
 from typing import Generator
@@ -25,6 +26,14 @@ USER_PASSWORD = "123#Describly"
 engine = create_engine("sqlite:///./fastapi.db")
 SessionTesting = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+@pytest.fixture(scope="function")
+def test_logger():
+    return logger
 
 @pytest.fixture(scope="function")
 def test_session() -> Generator:
