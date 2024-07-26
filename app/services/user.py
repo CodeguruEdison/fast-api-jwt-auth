@@ -32,5 +32,7 @@ class UserService(AbstractUserService):
                  password=hash_password(data.password),
                  is_active=False)
      db_user = self.user_repository.add(user) 
+     #Account verification
+     
      return user_to_user_response(db_user)    
       
