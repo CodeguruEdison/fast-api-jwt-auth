@@ -1,7 +1,6 @@
 # Auto Generating Migrations (FastAPI + SQLAlchemy + Alembic)
 
-### Video Tutorial
-[Click here](https://youtu.be/HuOG7VS8qvE)
+
 
 ### Installation & Configuration
 - Install the Docker Desktop and Start It
